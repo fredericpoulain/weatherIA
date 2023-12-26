@@ -72,7 +72,7 @@ class RegistrationController extends AbstractController
                 $token = $JWTService->generate($header, $payload, $this->getParameter('app.jwtkey'));
 
                 $sendMailService->send(
-                    'no-reply@fredericpoulain.fr',
+                    'no-reply@domaine.com',
                     $user->getEmail(),
                     'Météo/IA : Activation de votre compte',
                     'register',
@@ -157,7 +157,7 @@ class RegistrationController extends AbstractController
 
         // On envoie un mail
         $sendMailService->send(
-            'no-reply@fredericpoulain.fr',
+            'no-reply@domaine.com',
             $user->getEmail(),
             'Météo/IA : Activation de votre compte',
             'register',
