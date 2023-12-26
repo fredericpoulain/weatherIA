@@ -31,12 +31,6 @@ services:
     App\Service\GetLocalTimeParamsService:
         arguments:
             $bigDataCloudApiKey: '%env(BIG_DATA_CLOUD_API_KEY)%'
-#    App\Service\SpamChecker:
-#        arguments:
-#            $akismetKey: '%env(AKISMET_API_KEY)%'
-    #  App\Service\OpenaiParamsService:
-    #    arguments:
-    #      $openaiApiKey: '%env(OPENAI_KEY)%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
