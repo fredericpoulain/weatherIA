@@ -1,0 +1,117 @@
+
+.titleBloc button{
+    position: absolute;
+    left: 0;
+    font-size: var(--fs4);
+    border: solid 1px;
+    border-radius: 10px;
+    padding: 2px 10px;
+    bottom: 5px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.timeSlot {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: var(--primaryText);
+    color: var(--background);
+}
+
+.time, .temp, .icon, .winds, .humidity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fs1);
+    border-left: solid 1px var(--grey);
+
+}
+
+
+.icon img {
+    width: 35px;
+    height: 35px;
+}
+
+.winds {
+    flex-direction: column;
+    padding: 3px 10px;
+}
+
+.winds > div:first-of-type::before,
+.humidity::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(/assets/images/weatherIcons/vent.svg) center center / contain no-repeat;
+    vertical-align: middle;
+    padding-right: 24px;
+    position: relative;
+    right: 7px;
+    top: 8px;
+}
+
+.winds div:last-of-type {
+    padding-left: 29px;
+}
+
+.humidity::before {
+    background: url(/assets/images/weatherIcons/droplet.svg) center center / contain no-repeat;
+    padding-right: 0;
+    right: 0;
+    top: -1px;
+    margin-left: -2px;
+
+}
+.btnBack {
+    border: solid 1px var(--primaryText);
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--primaryText);
+    padding: 5px 10px;
+    transition: 0.2s;
+    width: 90px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.btnScrollTop{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    height: 50px;
+    width: 50px;
+    background-color: var(--blue);
+    font-size: 25px;
+    opacity: 0.8;
+    color: var(--background);
+    border: none;
+    border-radius: 50px;
+    padding: 6px;
+    display: none;
+    cursor: pointer;
+}
+@media screen and (min-width: 860px) {
+    .btnBack:hover,
+    .titleBloc button:hover i{
+        /*transform: scale(1.02);*/
+        /*box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);*/
+        color: var(--blue);
+    }
+    /*.titleBloc button{*/
+    /*    position: absolute;*/
+    /*    left: 0;*/
+    /*    font-size: var(--fs4);*/
+    /*    border: solid 1px;*/
+    /*    border-radius: 10px;*/
+    /*    padding: 2px 10px;*/
+    /*    bottom: 5px;*/
+    /*}*/
+
+
+}

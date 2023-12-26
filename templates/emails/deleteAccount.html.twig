@@ -1,0 +1,9 @@
+<h1>Supprimer mon compte</h1>
+<p>Salutations {{ user.username }},</p>
+<p>Vous avez demandé la suppression de votre compte. Attention, cette suppression est définitive et irréversible, assurez-vous bien que c'est ce que vous souhaitez faire.
+</p>
+<p>
+  <a href="{{ absolute_url(path('app_deleteProfile_confirm', { token: token })) }}">CONFIRMER</a>
+</p>
+<p>Ce lien expirera dans 3 heures</p>
+

@@ -1,0 +1,217 @@
+.title h1 {
+    font-size: 32px;
+    text-align: center;
+    margin: 15px auto;
+}
+.alert{
+    text-align: center;
+}
+
+
+.alert p {
+    padding: 5px;
+    border-radius: 5px;
+}
+form{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+}
+form> div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+form> div label{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 5px
+}
+form input, form textarea, .choices__inner, input[type=file]::file-selector-button{
+    outline: none;
+    border: solid 1px var(--primaryText);
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 5px;
+    color: var(--primaryText);
+    transition: .2s;
+}
+input[type=file]::file-selector-button:hover {
+    background-color: var(--backgroundGreyLight);
+}
+.choices__inner input{
+    background-color: transparent;
+}
+.choices__list--multiple .choices__item {
+    background-color: var(--blue);
+    border: 1px solid var(--backgroundGreyLight);
+}
+form input::placeholder{
+    color: var(--primaryText);
+}
+button{
+    border: solid 1px var(--primaryText);
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--primaryText);
+    padding: 5px 10px;
+    transition: 0.2s;
+    font-weight: bold;
+    margin: 20px auto 0;
+}
+
+/*.divBtn{*/
+/*    text-align: center;*/
+/*}*/
+
+.login {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.errorLogin{
+    color: var(--errorColor);
+    margin-bottom: 20px;
+}
+.btnLogin{
+    width: 120px;
+}
+.suggestRegister,
+.suggestLogin{
+    text-align: center;
+}
+.suggestLogin{
+    margin-bottom: 20px;
+}
+.suggestLogin p{
+    margin-bottom: 5px;
+    margin-top: 35px;
+}
+.suggestRegister p:first-of-type{
+    margin-bottom: 5px;
+}
+.suggestRegister p:last-of-type{
+    font-size: 13px;
+    margin-top: 0px;
+}
+.suggestRegister button,
+.suggestLogin button{
+    margin-top: 5px;
+}
+.infoPassword span{
+    font-size: 12px;
+}
+.infoRegister p{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+.legend{
+    text-align: end;
+}
+.legend span{
+    font-size: 12px;
+}
+.forgot,
+.remember{
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 40px
+}
+.forgot a:hover{
+    color: var(--blue);
+}
+
+form ul:not(#editor ul){
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 5px;
+}
+
+form ul li:not(#editor ul li)  {
+color: var(--errorColor);
+}
+h4:not(#editor h4){
+    text-align: center;
+}
+
+.divBtnPrevious>div{
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.delete{
+    text-align: center;
+}
+.delete a{
+    text-decoration: underline;
+    transition: .3s;
+}
+
+.delete a:hover {
+    color: var(--blue);
+}
+.register .formContent form>div:nth-child(4){
+    height: 5px;
+    overflow: hidden;
+}
+.formImg{
+    text-align: center;
+}
+.formImg img{
+    max-width: 400px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#editor{
+    outline: none;
+    border: solid 1px var(--primaryText);
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 5px;
+    color: var(--primaryText);
+    transition: .2s;
+}
+.symfonyFormAlert li{
+    list-style: none;
+    color: var(--errorColor);
+    text-align: center;
+}
+.symfonyFormAlert ul{
+    padding-left: 0;
+}
+@media screen and (min-width: 500px) {
+    .backgroundIndex {
+        font-size: 45px;
+    }
+    form,
+    .title h1{
+        max-width: 600px;
+    }
+}
+
+@media screen and (min-width: 860px) {
+
+
+    .backgroundIndex {
+        font-size: 70px;
+    }
+
+    .title h1 {
+        font-size: 38px;
+    }
+
+    button:hover{
+        color: var(--blue);
+    }
+
+
+    /*    form> div:last-of-type button:hover{*/
+    /*background-color: var(--backgroundLight);*/
+    /*    }*/
+
+}

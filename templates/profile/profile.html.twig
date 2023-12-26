@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes infos{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/form.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+                <script src="{{ asset('assets/js/profile.js') }}" type="module" defer></script>
+                <script src="{{ asset('assets/js/flashMessage.js') }}" type="module" defer></script>
+    {% endblock %}
+{% block body %}
+    <section class="resetRequest">
+        <div class="title">
+            <h1>Mon profil</h1>
+        </div>
+        <div class="alert"><p></p></div>
+        <div class="formEmailContent">
+            <h4>Modifier mon adresse email : {{ email }}</h4>
+            {{ form_start(formUpdateEmail) }}
+            {{ form_row(formUpdateEmail.email) }}
+            <div class="divBtn">
+                <button class="btnUpdateEmail" type="submit">Valider</button>
+            </div>
+            {{ form_end(formUpdateEmail) }}
+        </div>
+        <div class="formpPasswordContent">
+            <h4>Modifier mon mot de passe</h4>
+            {{ form_start(formUpdatePassword) }}
+            {{ form_row(formUpdatePassword.oldPassword) }}
+            {{ form_row(formUpdatePassword.newPassword) }}
+            <div class="divBtn">
+                <button class="btnUpdatePassword" type="submit">Valider</button>
+            </div>
+            {{ form_end(formUpdatePassword) }}
+
+        </div>
+        <div class="delete"><a href="{{ path('app_deleteProfile_sendMail') }}">Supprimer mon compte</a></div>
+
+        <div class="divBtnPrevious">
+            <div>
+                <a href="{{ path('app_home') }}"><button type="button">Retour</button></a>
+
+            </div>
+
+        </div>
+    </section>
+    <div class="backgroundIndex">
+        <span>//[5] => 'Profil'</span>
+    </div>
+{% endblock %}

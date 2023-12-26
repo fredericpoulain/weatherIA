@@ -1,0 +1,330 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* main color */
+    --primaryText: #2c3e50;
+    --primaryTextLight: #496580;
+    --background: #ecf0f1;
+    --blue: #1e65d0;
+    --blue2: #4e8df3;
+
+    /* secondary color */
+    --border: #cbd8e3;
+    --backgroundGreyLight: #b7d3e7;
+    --rowEven: #e1ebf4;
+    --primaryText_opa5: rgba(213, 213, 213, 0.5);
+    --grey: #bab9b9;
+    --orange: #FF9E0EFF;
+    --redDelete: #e74c3c;
+    --white: #ffffff;
+    --errorColor: #d75966;
+    --errorBackgroundColor: #d75966;
+    --errorTextColor: #230a0d;
+    --successColorText: #0e3b23;
+    --successBackgroundColor: #27db7c;
+    --infoColorText: #09314a;
+    --infoBackgroundColor: #68aad5;
+
+    /* Utilities */
+    --fs1: 13px;
+    --fs2: 14px;
+    --fs4: 18px;
+    --fs5: 22px;
+    --fsBig1: 48px;
+    --fsBig2: 70px
+
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: var(--background);
+    font-family: 'Poppins', sans-serif;
+    color: var(--primaryText);
+}
+
+body a {
+    color: var(--primaryText);
+    text-decoration: none;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+body::before {
+    content: "";
+    height: 100vh;
+    width: 100vw;
+    /*color: rgba(113, 113, 113, 0.07);*/
+    position: fixed;
+    z-index: -2;
+    background-image: linear-gradient(rgba(112, 112, 112, 0.04) 1px, transparent 0px), linear-gradient(to right, rgba(112, 112, 112, 0.04) 1px, transparent 0px);
+    background-size: 135px 135px;
+    /*background-color: rgb(2, 9, 18);*/
+}
+
+.overflowActive {
+    /*overflow-x: auto;*/
+    overflow: hidden;
+}
+
+
+
+.backgroundIndex {
+    position: fixed;
+    bottom: 70px;
+    right: 0;
+    font-size: 26px;
+    pointer-events: none;
+    opacity: 0.02;
+    margin-bottom: 10px;
+    z-index: -1;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px;
+    line-height: 1.5em;
+    width: 100%;
+}
+
+
+.logo {
+    margin-left: 15px;
+    font-family: 'Caveat', cursive;
+}
+
+.logo a {
+    font-size: 33px;
+}
+
+.logo span:first-of-type {
+    color: var(--primaryText);
+}
+.links {
+    display: block;
+    height: 50px;
+}
+
+.links ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+.links li {
+    padding: 0 10px;
+    font-weight: bold;
+
+}
+
+/* **** Underline styles **** */
+.links a {
+    display: block;
+    padding: 8px 0;
+    position: relative;
+    transition: 0.3s;
+    overflow: hidden;
+
+}
+
+/* Fade in underline */
+.links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--blue);
+    opacity: 1;
+    transform: scale(0);
+    transform-origin: center;
+    transition: opacity 300ms, transform 300ms;
+}
+
+.links a:hover::after {
+    transform: scale(1);
+}
+
+.links a:hover {
+    color: var(--blue);
+}
+
+.blocMessageFlash {
+    width: 100%;
+    margin-bottom: 10px;
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.MessageFlash {
+    margin-bottom: 10px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.hideFlashMessage {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    padding: 6px 10px;
+}
+
+.successMessageFlash {
+    color: var(--successColorText);
+    background-color: var(--successBackgroundColor);
+    text-align: center;
+}
+
+.errorMessageFlash {
+    color: var(--errorTextColor);
+    background-color: var(--errorBackgroundColor);
+    text-align: center;
+}
+
+.infoMessageFlash {
+    color: var(--infoColorText);
+    background-color: var(--infoBackgroundColor);
+    text-align: center;
+}
+
+
+section {
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: var(--fs2);
+}
+
+h1 {
+    font-size: 28px;
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    text-align: center;
+    z-index: 99999;
+    /*background-color: var(--backgroundDark);*/
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s ease-out;
+
+}
+
+.loading img {
+    width: 150px;
+    height: 150px;
+    /*margin: auto;*/
+}
+
+.activeLoading {
+    display: flex;
+    align-items: center;
+    opacity: 1;
+
+}
+
+.alertError {
+    background-color: var(--errorColor);
+    width: 95%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer {
+    margin-top: auto;
+    padding: 10px
+}
+
+.logoFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.logoFooter a {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 32px;
+    color: var(--primaryText);
+    transition: .3s;
+}
+
+footer div:last-of-type {
+    text-align: center;
+}
+
+
+.error {
+    text-align: center;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+
+
+@media screen and (min-width: 860px) {
+    section {
+        font-size: initial;
+    }
+
+    header {
+        justify-content: space-between;
+    }
+
+
+    .logoFooter a:hover {
+        color: var(--blue);
+    }
+
+    .backgroundIndexError {
+        font-size: 70px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+}
+
+

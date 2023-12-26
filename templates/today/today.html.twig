@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block title %}Météo IA | Mes favoris{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/today.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/detailsList.css') }}">
+    {% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script type="module" src="{{ asset('assets/js/weatherDetails/today.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+    <section class="todayContent">
+        <div class="titleBloc">
+            <h1></h1>
+            <h2>Aujourd'hui</h2>
+            <a href="{{ path('app_home') }}"><button><i class="fa-solid fa-arrow-left-long"></i></button></a>
+
+        </div>
+        <div class="containerPerHours">
+            <div class="perHoursTitle">
+                <span>En détail par heure</span>
+                <span class="chevron"><i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+            <ul class="listPerHours"></ul>
+
+        </div>
+        <div class="titleChart">
+            <h2>Graphiques</h2>
+        </div>
+        <div class="contentChart">
+
+            <div>
+                <div class="canvasParent">
+                    <canvas class="tempChart"></canvas>
+                </div>
+                <div class="canvasParent">
+                    <canvas class="windsChart"></canvas>
+                </div>
+            </div>
+            <div>
+                <div class="canvasParent">
+                    <canvas class="humidityChart"></canvas>
+                </div>
+                <div class="canvasParent">
+                    <canvas class="cloudcoverChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+        <div class="alertError"></div>
+
+        <div><a href="{{ path('app_home') }}">
+                <button class="btnBack">Retour</button>
+            </a></div>
+        <button class="btnScrollTop"><i class="fa-solid fa-angles-up"></i></button>
+        <template class="listTemplate">
+            <li class="timeSlot">
+                <div class="time"></div>
+                <div class="temp"></div>
+                <div class="icon">
+                    <img alt="Icône météo">
+                </div>
+                <div class="winds">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="humidity"></div>
+            </li>
+        </template>
+    </section>
+
+    <div class="backgroundIndex">
+        <span>//[1] => 'Détail d'aujourd'hui'</span>
+    </div>
+{% endblock %}
+
+
+

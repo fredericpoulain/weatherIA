@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Météo IA | Accueil{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+              integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="{{ asset('assets/css/homeWeather.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+        <script type="module" src="{{ asset('assets/js/home/indexWeather.js') }}" defer></script>
+        <script src="{{ asset('assets/js/flashMessage.js') }}" defer></script>
+    {% endblock %}
+{% block body %}
+
+    <section class="weatherMain">
+        <div class="weatherMainTop">
+            <form class="formSearch">
+                <label for="search" class="iconSearch">{# divIconeRecherche #}
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </label>
+                <input id="search" type="text" name="inputSearch" placeholder="Rechercher une ville...">
+                <button class="deleteIcon">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+            </form>
+            <div class="weatherButtons">
+                <button class="locateMe">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    <span>Me localiser</span>
+                </button>
+
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="contentButtonProfile">
+                        <button class="buttonProfile" title="Options de mon compte">
+                            <span>{{ app.user.username }}</span>
+                        </button>
+                        <div class="divMenuProfile">
+                            <a href="{{ path('app_profile') }}">
+                                <button>
+                                    <span><i class="fa-solid fa-user"></i></span><span>Mon profil</span>
+                                </button>
+                            </a>
+                            <a href="{{ path('app_favorites') }}">
+                                <button class="buttonFavorite" title="Liste de favoris">
+                                    <span><i class="fa-solid fa-heart"></i></span><span>Favoris</span>
+                                </button>
+                            </a>
+                            <a href="{{ path('app_activities') }}">
+                                <button class="buttonIA" title="Que faire par ce temps ?">
+                                    <span><i class="fa-solid fa-person-walking"></i></span><span>Activités (IA)</span>
+                                </button>
+                            </a>
+{#                            <a href="">#}
+{#                                <button class="buttonIA" title="Que faire par ce temps ?">#}
+{#                                    <span><i class="fa-solid fa-person-walking"></i></span><span>Activités (IA)</span>#}
+{#                                </button>#}
+{#                            </a>#}
+                            <a href="{{ path('app_logout') }}">
+                                <button class=""><span><i class="fa-solid fa-power-off"></i></span>Déconnexion</button>
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{{ path('app_login') }}">
+                        <button class="buttonLogin" title="Se connecter">
+                            <span>Connexion</span>
+                        </button>
+                    </a>
+                {% endif %}
+
+
+            </div>
+            <div class="searchList">
+                <ul></ul>
+            </div>
+        </div>
+        <div class="alertError"></div>
+        <div class="weatherContent"></div>
+
+        <div class="backgroundIndex">
+            <span>//[1] => 'Météo / IA'</span>
+        </div>
+        <div class="scrolldownWrapper">
+            <div class="scrolldown">
+                <svg height="30" width="10">
+                    <circle class="scrolldown-p1" cx="5" cy="15" r="2"/>
+                    <circle class="scrolldown-p2" cx="5" cy="15" r="2"/>
+                </svg>
+            </div>
+        </div>
+        <template class="templateLi">
+            <li>
+                <div class="liLocationIcon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="liCityInfo">
+                    <span class="citySpan"></span>
+                    <span class="stateCountrySpan"></span>
+                </div>
+
+            </li>
+
+        </template>
+        <template class="templateMessage">
+            <div class="infoWeatherEmpty">
+                <div><i class="fa-solid fa-arrow-up"></i></div>
+                <p> Commencez par faire une recherche </p>
+            </div>
+        </template>
+        <template class="templateWeather">
+            <div class="cityName">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class="addFavorites">
+                    <button>
+                        <i class="fa-solid fa-heart-circle-plus"></i>
+                    </button>
+                </div>
+                {% endif %}
+                <h2></h2>
+                <h3></h3>
+                <h4></h4>
+            </div>
+            <div class="currently">
+                <div class="currentlyTop">
+                    <div class="bigIcon">
+                    </div>
+                    <div>
+                        <div class="temperature"></div>
+                        <div class="iconDescription"></div>
+                    </div>
+                </div>
+                <div class="currentlyCenter">
+                    <div>
+                        <div class="wind">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="humidity">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="dataSun">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="pressure">
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="today">
+                    <div class="todayEveryHour">
+                    </div>
+                    <div class="todayDetail">
+                        <a href="{{ path('app_details_today') }}">Plus de détails <i
+                                    class="fa-solid fa-angles-right"></i></a>
+                    </div>
+                </div>
+                <div class="forecast">
+                    <div class="forecastTitle">
+                        Prévision des jours suivants
+                    </div>
+                    <div class="forecastBody">
+                    </div>
+
+                    <div class="forecastDetail">
+                        <a href="{{ path('app_details_forecast') }}">Plus de détails <i
+                                    class="fa-solid fa-angles-right"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </template>
+    </section>
+{% endblock %}

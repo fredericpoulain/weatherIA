@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}Météo IA | Mes favoris{% endblock %}
+    {% block stylesheets %}
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+              integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="{{ asset('assets/css/favorites.css') }}">
+    {% endblock %}
+{% block javascripts %}
+    <script  type="module" src="{{ asset('assets/js/favorites/indexFavorites.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+    <section class="favoritesContent">
+        <div><h2>Mes favoris</h2></div>
+        <ul>
+        </ul>
+        <div class="alertError"></div>
+        <div><a href="{{ path('app_home') }}"><button>Retour</button></a></div>
+    </section>
+    <template class="templateLi">
+        <li>
+            <button class="grip" ><i class="fa-solid fa-grip-vertical"></i></button>
+            <div class="infoCity">
+                <div></div>
+                <div></div>
+                <div>
+                    <img alt="Icône météo">
+                </div>
+            </div>
+            <button class="delete"><i class="fa-solid fa-trash"></i></button>
+        </li>
+    </template>
+
+    <div class="backgroundIndex">
+        <span>//[1] => 'Mes favoris'</span>
+    </div>
+{% endblock %}
+
+
+

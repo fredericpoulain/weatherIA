@@ -1,0 +1,241 @@
+:root{
+   --marginTopLi: 16px;
+}
+
+/* ***** container favoris ***** */
+
+.favoritesContent {
+    position: relative;
+
+}
+
+/*title*/
+.favoritesContent > div:nth-child(1) {
+    text-align: center;
+}
+
+.favoritesContent>div:last-of-type{
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.favoritesContent>div:last-of-type button {
+
+    border: solid 1px var(--primaryText);
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--primaryText);
+    padding: 5px 10px;
+    transition: 0.3s;
+    width: 90px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+
+}
+.favoritesContent>div:last-of-type button:hover{
+    color: var(--blue);
+}
+
+.favoritesContent ul {
+    padding-left: 0;
+
+}
+
+.favoritesContent ul li {
+    background-color: var(--primaryText);
+    color: var(--background);
+    list-style: none;
+    /*pas de margin 8+8, mais margin top 16px uniquement pour résoudre de l'animation lors de la suppression d'une ville*/
+    margin: var(--marginTopLi) auto auto;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: transform ;
+    transition-duration: 0.3s;
+
+
+}
+
+.grip {
+    height: 40px;
+    color: var(--background);
+    background-color: var(--blue);
+    border: none;
+    cursor: move;
+    /* pointer-events: none; */
+    font-size: 21px;
+    transition: .3s;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 0;
+    display: none;
+}
+.grip:hover {
+    background-color: var(--blue2);
+}
+.grip:active {
+    cursor: grabbing;
+}
+.grip i {
+    /*pointer-events: none;*/
+    padding: 8px 5px;
+}
+
+.infoCity {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+
+.infoCity>div:nth-child(1) {
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 10px 5px;
+    transition: .3s;
+}
+
+.infoCity>div:nth-child(2),
+.infoCity > div:nth-child(3){
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoCity > div:nth-child(3) {
+    pointer-events: none;
+}
+.infoCity>div img {
+    width: 100%;
+    height: auto;
+}
+
+.delete {
+    color: var(--background);
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition : 0.2s;
+}
+.delete:hover{
+    color: var(--redDelete);
+}
+
+.favoritesContent ul li.deleteAnimation {
+    opacity: 0;
+    transition-delay: 0s, 50ms;
+    transition-property: opacity, height, right, margin-top;
+    transition-timing-function:
+            cubic-bezier(0, 0, 0.5, 1),
+            cubic-bezier(0.70, -0.50, 0.30, 2.5);
+    transition-duration: .2s;
+    /*position: relative;*/
+    height: 0;
+    margin-top: 0;
+
+}
+/*.favoritesContent ul li.deleteAnimation {*/
+/*    !* Styles pour l'animation *!*/
+/*    opacity: 0;*/
+/*    height: 0;*/
+/*}*/
+
+.dragStart {
+    opacity: .5;
+
+}
+
+.favoritesContent ul li.pointer {
+    background-color: var(--primaryText);
+    width: 100%;
+    /*max-width: 100%;*/
+    border-radius: 3px;
+    /*margin-bottom: 13px;*/
+    /*margin-top: 5px;*/
+    animation: showPointer 0.3s forwards;
+}
+
+@keyframes showPointer {
+    from {
+        opacity: 0;
+        height: 0;
+    }
+    to {
+        opacity: 1;
+        height: 0.3rem;
+    }
+}
+
+.favoritesContent ul.dragInProgress li {
+    position: relative;
+    transition: transform .3s ease-in-out;
+}
+
+
+
+
+.favoritesContent ul.dragInProgress li::before,
+.favoritesContent ul.dragInProgress li::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: var(--marginTopLi);
+    position: absolute;
+
+}
+
+.favoritesContent ul.dragInProgress li::before {
+    top: calc(-1 * var(--marginTopLi));
+}
+
+.favoritesContent ul.dragInProgress li::after {
+    bottom: calc(-1 * var(--marginTopLi));
+}
+
+
+@media screen and (min-width: 550px){
+    .favoritesContent ul li{
+        max-width: 550px;
+    }
+    .infoCity>div:nth-child(1){
+        width: 300px;
+    }
+
+}
+
+@media screen and (min-width: 860px) {
+    .favoritesContent ul li {
+        max-width: 550px;
+    }
+    .grip{
+        display: block;
+    }
+    .favoritesContent ul li {
+        border-radius: 15px 10px 10px 15px;
+
+    }
+    .infoCity>div:nth-child(1):hover{
+        color: var(--blue2);
+    }
+    /*.favoritesContent>div:last-of-type button:hover{*/
+    /*    background-color: var(--backgroundDM);*/
+    /*}*/
+    /*.infoCity {*/
+    /*    justify-content: space-evenly;*/
+    /*}*/
+}

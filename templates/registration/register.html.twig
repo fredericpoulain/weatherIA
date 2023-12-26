@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/form.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+                <script src="{{ asset('assets/js/form.js') }}" type="module" defer></script>
+    {% endblock %}
+{% block body %}
+    <section class="register">
+        <div class="title">
+            <h1>Inscription</h1>
+        </div>
+        <div class="formContent">
+            <div class="alert"><p></p></div>
+            {{ form_errors(registrationForm) }}
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.userName) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de passe *'
+            }) }}
+            {{ form_row(registrationForm.confirmPassword, {
+                label: 'Confirmez mot de passe *'
+            }) }}
+            <div class="infoPassword"><span>(8 caractères minimum)</span></div>
+            <div class="legend"><span>* champs obligatoires</span></div>
+            <div class="divBtn">
+                <button type="submit" class="btn btnRegister">S'inscrire</button>
+            </div>
+            <div class="infoRegister">
+                <p>Les données que vous fournissez lors de votre inscription ne servent qu’à vérifier votre identité et à sécuriser votre accès. Elles ne seront jamais divulguées à des tiers.</p>
+            </div>
+            {{ form_end(registrationForm) }}
+        </div>
+        <div class="suggestLogin">
+            <p>J'ai déjà un compte !</p>
+            <a href="{{ path('app_login') }}">
+                <button class="btnLogin" type="submit">
+                    Se connecter
+                </button>
+            </a>
+        </div>
+
+    </section>
+    <div class="backgroundIndex">
+        <span>//[5] => 'S'inscrire'</span>
+    </div>
+
+{% endblock %}

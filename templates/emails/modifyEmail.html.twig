@@ -1,0 +1,7 @@
+<h1>Changement d'adresse en cours</h1>
+<p>Salutations {{ user.username }},</p>
+<p>Un clic sur le lien ci-dessous est nécessaire pour confirmer la modification de votre adresse email. Suite à cette action, vous serez déconnecté et devrez vous identifier à nouveau.</p>
+<p>
+  <a href="{{ absolute_url(path('app_reset_email', { token: token })) }}">CONFIRMER</a>
+</p>
+<p>Ce lien expirera dans 3 heures</p>

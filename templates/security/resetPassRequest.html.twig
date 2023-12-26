@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de réinitialisation de mot de passe{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/form.css') }}">
+    {% endblock %}
+    {% block javascripts %}
+                <script src="{{ asset('assets/js/flashMessage.js') }}" defer></script>
+    {% endblock %}
+{% block body %}
+    <section class="resetRequest">
+        <div class="title">
+            <h1>Mot de passe oublié</h1>
+        </div>
+        <div class="formContent">
+            {{ form_start(form) }}
+            {{ form_row(form.email) }}
+            <div class="divBtn">
+                <button type="submit">Valider</button>
+            </div>
+
+            {{ form_end(form) }}
+            <div class="remember">
+                <a href="{{ path('app_login') }}">Je m'en souviens finalement</a>
+            </div>
+        </div>
+    </section>
+    <div class="backgroundIndex">
+        <span>//[5] => 'resetPass'</span>
+    </div>
+{% endblock %}
