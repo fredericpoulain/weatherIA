@@ -24,7 +24,7 @@ class ResetPassType extends AbstractType
                         'message' => 'Le champ mot de passe ne peut pas être vide ',
                     ]),
                     new Length([
-                        'min' => 8,
+                        'min' => 4,
                         'minMessage' => 'Votre mot de passe ne peut pas être inférieur à {{ limit }} caractères',
                         'max' => 4096,
                     ]),

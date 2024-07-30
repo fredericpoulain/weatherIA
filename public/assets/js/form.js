@@ -64,7 +64,7 @@ function validationRegisterForm() {
         styleAlerte(elpassword, "Veuillez entrer un mot de passe.")
         return false;
     }
-    if (elpassword.value.length < 8) {
+    if (elpassword.value.length < 4) {
         styleAlerte(elpassword, "Votre mot de passe doit comporter 8 caractères minimum.")
         return false;
     }
