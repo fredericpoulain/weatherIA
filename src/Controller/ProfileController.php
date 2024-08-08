@@ -29,6 +29,9 @@ class ProfileController extends AbstractController
         UserPasswordHasherInterface $userPasswordHasher
     ): Response
     {
+        $this->addFlash('infoMessageFlash', "Version de démonstration : les informations de ce profil ne peuvent pas être modifiées");
+        return $this->redirectToRoute('app_home');
+
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_home');

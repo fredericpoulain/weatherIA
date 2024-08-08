@@ -48,6 +48,9 @@ class SecurityController extends AbstractController
         UsersRepository $usersRepository
     ): Response
     {
+        $this->addFlash('infoMessageFlash', "Version de démonstration ! <br>LOGIN : demo@fredericpoulain.fr <br> PASS : demo");
+        return $this->redirectToRoute('app_login');
+
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
         }

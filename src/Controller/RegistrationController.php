@@ -27,6 +27,9 @@ class RegistrationController extends AbstractController
 
     ): Response
     {
+        $this->addFlash('infoMessageFlash', "Version de démonstration ! Inscriptions désactivées");
+        return $this->redirectToRoute('app_login');
+
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
