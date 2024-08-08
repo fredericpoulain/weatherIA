@@ -20,7 +20,7 @@ class HomeWeatherIAController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            $this->addFlash('infoMessageFlash', "Connectez-vous grâce aux champs pré-remplis !");
+            $this->addFlash('infoMessageFlash', "Connectez-vous grâce aux champs préremplis !");
         }
 
 
