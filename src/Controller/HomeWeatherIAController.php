@@ -18,6 +18,12 @@ class HomeWeatherIAController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(SessionInterface $session): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            $this->addFlash('infoMessageFlash', "Connectez-vous grâce aux champs pré-remplis !");
+        }
+
+
 
         return $this->render('home/home.html.twig');
     }
