@@ -53,7 +53,7 @@ class ActivitiesWeatherIAController extends AbstractController
                 $cityName = $data->key1;
                 $promptWeather = $data->key2;
 
-                $message = "En ce moment à " . $cityName . " : ". $promptWeather . ". Liste 4 activités parfaitement adaptées aux conditions météorologiques que je peux faire dans cette ville. Le premier caractère de ta réponse doit correspondre à ta premiere suggestion d'activités, exemple : '1. nom de l'activité 1' : détail de l'activité 1...";
+                $message = "En ce moment à " . $cityName . " : " . $promptWeather . ". Trouves 4 activités parfaitement adaptées aux conditions météorologiques que je peux faire dans cette ville. Ces activités doivent être placées dans un format JSON, par exemple : {\"activitiesSuggestions\":[{\"name\":\"nom de l'activité 1\",\"details\":\"détail de l'activité 1\"},{\"name\":\"nom de l'activité 2\",\"details\":\"détail de l'activité 2\"}, ...]}. Fournis la réponse sous ce format. Je souhaite rien d'autre que le format JSON dans ta réponse";
                 $endPoint = "https://api.openai.com/v1/chat/completions";
                 $openaiKey = $this->getParameter('app.openaiKey');
                 $data = $openaiParamsService->prepareParams($message);

@@ -24,40 +24,38 @@ window.addEventListener('load', async () => {
         elList.append(imgElement)
 
     })();
+    try {
+        const openAIResultPromise = callTheServer('getActivities', cityName, promptWeather);
+        // On attend que les deux tâches soient terminées
+        const [_, openAIResult] = await Promise.all([typingPromise, openAIResultPromise]);
 
-    const openAIResultPromise = callTheServer('getActivities', cityName, promptWeather);
+        elList.innerHTML = "";
+        elList.style.textAlign = 'start';
 
-    // Attendez que les deux tâches soient terminées
-    const [_, openAIResult] = await Promise.all([typingPromise, openAIResultPromise]);
+        let responseParsed = JSON.parse(openAIResult).activitiesSuggestions;
 
-    // Utilisez le résultat de openAIResult
+        responseParsed.forEach(activity => {
 
-    elList.innerHTML = "";
-    elList.style.textAlign = 'start';
-    let activities = openAIResult.split('\n\n');
-    for (const activity of activities) {
-        // Séparer le numéro et le titre de l'activité du reste du texte
-        let parts = activity.split(' : ');
-        let title = parts[0];
-        let text = parts[1];
+            // Créer un nouvel élément de paragraphe
+            const paragraphe = document.createElement("p");
 
-        // Créer un nouvel élément de paragraphe
+            // Créer un élément de texte en gras pour le titre
+            const boldTitle = document.createElement("strong");
+            boldTitle.textContent = activity.name + " : "
+
+            // Ajouter le titre en gras et le reste du texte au paragraphe s'il existe.
+            paragraphe.appendChild(boldTitle);
+            paragraphe.appendChild(document.createTextNode(activity.details));
+
+            // Ajouter le paragraphe à la liste
+            elList.append(paragraphe);
+        });
+    }catch (e) {
         const paragraphe = document.createElement("p");
-
-        // Créer un élément de texte en gras pour le titre
-        const boldTitle = document.createElement("strong");
-        boldTitle.textContent = text ? title + ": " : title;
-
-        // Ajouter le titre en gras et le reste du texte au paragraphe s'il existe.
-        paragraphe.appendChild(boldTitle);
-        if (text) { // Ajoutez cette condition
-            paragraphe.appendChild(document.createTextNode(text));
-        }
-
-        // Ajouter le paragraphe à la liste
+        paragraphe.textContent = e.message;
+        paragraphe.style.color = 'red'
         elList.append(paragraphe);
     }
-
 
 })
 
@@ -73,7 +71,7 @@ function typeText(text, el) {
                 clearInterval(interval);
                 resolve();  // Résout la promesse lorsque le texte a fini d'être tapé
             }
-        }, 30);
+        }, 10);
     });
 }
 
