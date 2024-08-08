@@ -14,6 +14,7 @@ class ForecastWeatherIAController extends AbstractController
     #[Route('/prochains-jours', name: 'app_details_forecast')]
     public function forecast(): Response
     {
+        $this->addFlash('infoMessageFlash', "Utilisation de la librairie ChartJS pour les graphiques");
         return $this->render('forecast/forecast.html.twig');
     }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Frédéric Poulain, développeur web">
+    <meta name="description" content="Frédéric Poulain, développeur web, Météo IA">
     <title>Frédéric Poulain || {% block title %}Accueil{% endblock %} </title>
     <link rel="icon" sizes="16x16" href="{{ asset('assets/images/svg/logo.svg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,7 @@
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('assets/js/flashMessage.js') }}" defer></script>
 
     {% block stylesheets %}
     {% endblock %}

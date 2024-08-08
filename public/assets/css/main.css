@@ -28,6 +28,8 @@
     --successBackgroundColor: #27db7c;
     --infoColorText: #09314a;
     --infoBackgroundColor: #68aad5;
+    --warningColorText: #3b2100;
+    --warningBackgroundColor: #f9ab4a;
 
     /* Utilities */
     --fs1: 13px;
@@ -210,7 +212,11 @@ header {
     background-color: var(--infoBackgroundColor);
     text-align: center;
 }
-
+.warningMessageFlash {
+    color: var(--warningColorText);
+    background-color: var(--warningBackgroundColor);
+    text-align: center;
+}
 
 section {
     max-width: 950px;

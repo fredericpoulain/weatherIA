@@ -20,6 +20,9 @@ class FavoritesWeatherIAController extends AbstractController
          if (!$this->getUser()) {
              return $this->redirectToRoute('app_home');
          }
+        $this->addFlash('infoMessageFlash', "Jouez avec le drag&drop en JS vanilla ! Si aucune ville présente dans la liste, revenez à l'accueil et ajoutez en favoris plusieurs villes !");
+        $this->addFlash('warningMessageFlash', "Il est possible que l'ordre et la persistance des villes favorites ne soient pas correctement reflétés, car le compte DEMO est accessible au public.");
+
         return $this->render('favorites/favorites.html.twig');
     }
 
