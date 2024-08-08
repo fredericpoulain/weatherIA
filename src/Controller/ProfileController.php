@@ -32,79 +32,79 @@ class ProfileController extends AbstractController
         $this->addFlash('infoMessageFlash', "Version de démonstration : les informations de ce profil ne peuvent pas être modifiées");
         return $this->redirectToRoute('app_home');
 
-        $user = $this->getUser();
-        if (!$user) {
-            return $this->redirectToRoute('app_home');
-        }
-        $formUpdateEmail = $this->createForm(UpdateEmailType::class);
-        $formUpdateEmail->handleRequest($request);
-
-        $formUpdatePassword = $this->createForm(UpdatePasswordType::class);
-        $formUpdatePassword->handleRequest($request);
-        $emailInBdd = $user->getEmail();
-        if ($formUpdateEmail->isSubmitted()){
-            if (!$formUpdateEmail->isValid()) {
-                $errors = $formUpdateEmail->getErrors(true);
-                $errorMessage = $errors[0]->getMessage();
-                return $this->json([
-                    'isSuccessful' => false,
-                    'message' => $errorMessage
-                ]);
-            }
-
-            $newEmail = $formUpdateEmail->get('email')->getData();
-            if($newEmail === $emailInBdd){
-                $formUpdateEmail->get('email')->addError(new FormError('Votre email est identique à l\'email actuel.'));
-            }else{
-                $header = [
-                    'typ' => 'JWT',
-                    'alg' => 'HS256'
-                ];
-                $payload = [
-                    'user_id' => $user->getId(),
-                    'user_email' => $newEmail
-                ];
-                $token = $JWTService->generate($header, $payload, $this->getParameter('app.jwtkey'));
-
-                $sendMailService->send(
-                    'no-reply@fredericpoulain.fr',
-                    $newEmail,
-                    'Activation de votre nouvelle adresse email',
-                    'modifyEmail',
-                    compact('user', 'token')
-                );
-
-                $message = "Vos informations on été mais à jour, un mail à été envoyé pour valider le changement de votre adresse email.";
-
-                return $this->json([
-                    'isSuccessful' => true,
-                    'message' => $message
-                ]);
-            }
-        }
-        if ($formUpdatePassword->isSubmitted() && $formUpdatePassword->isValid()){
-            if (!$userPasswordHasher->isPasswordValid($user, $formUpdatePassword->get('oldPassword')->getData())) {
-                $formUpdatePassword->get('oldPassword')->addError(new FormError('Mot de passe actuel incorrect'));
-
-            } else {
-                $user->setPassword(
-                    $userPasswordHasher->hashPassword(
-                        $user,
-                        $formUpdatePassword->get('newPassword')->getData()
-                    )
-                );
-                $this->addFlash('successMessageFlash', 'Mot de passe modifié avec succès');
-            }
-
-            $entityManager->persist($user); //of whatever the entity object you're using to create the form2 form
-            $entityManager->flush();
-        }
-
-        return $this->render('profile/profile.html.twig', [
-            'formUpdateEmail' => $formUpdateEmail->createView(),
-            'formUpdatePassword' => $formUpdatePassword->createView(),
-            'email' => $emailInBdd
-        ]);
+//        $user = $this->getUser();
+//        if (!$user) {
+//            return $this->redirectToRoute('app_home');
+//        }
+//        $formUpdateEmail = $this->createForm(UpdateEmailType::class);
+//        $formUpdateEmail->handleRequest($request);
+//
+//        $formUpdatePassword = $this->createForm(UpdatePasswordType::class);
+//        $formUpdatePassword->handleRequest($request);
+//        $emailInBdd = $user->getEmail();
+//        if ($formUpdateEmail->isSubmitted()){
+//            if (!$formUpdateEmail->isValid()) {
+//                $errors = $formUpdateEmail->getErrors(true);
+//                $errorMessage = $errors[0]->getMessage();
+//                return $this->json([
+//                    'isSuccessful' => false,
+//                    'message' => $errorMessage
+//                ]);
+//            }
+//
+//            $newEmail = $formUpdateEmail->get('email')->getData();
+//            if($newEmail === $emailInBdd){
+//                $formUpdateEmail->get('email')->addError(new FormError('Votre email est identique à l\'email actuel.'));
+//            }else{
+//                $header = [
+//                    'typ' => 'JWT',
+//                    'alg' => 'HS256'
+//                ];
+//                $payload = [
+//                    'user_id' => $user->getId(),
+//                    'user_email' => $newEmail
+//                ];
+//                $token = $JWTService->generate($header, $payload, $this->getParameter('app.jwtkey'));
+//
+//                $sendMailService->send(
+//                    'no-reply@fredericpoulain.fr',
+//                    $newEmail,
+//                    'Activation de votre nouvelle adresse email',
+//                    'modifyEmail',
+//                    compact('user', 'token')
+//                );
+//
+//                $message = "Vos informations on été mais à jour, un mail à été envoyé pour valider le changement de votre adresse email.";
+//
+//                return $this->json([
+//                    'isSuccessful' => true,
+//                    'message' => $message
+//                ]);
+//            }
+//        }
+//        if ($formUpdatePassword->isSubmitted() && $formUpdatePassword->isValid()){
+//            if (!$userPasswordHasher->isPasswordValid($user, $formUpdatePassword->get('oldPassword')->getData())) {
+//                $formUpdatePassword->get('oldPassword')->addError(new FormError('Mot de passe actuel incorrect'));
+//
+//            } else {
+//                $user->setPassword(
+//                    $userPasswordHasher->hashPassword(
+//                        $user,
+//                        $formUpdatePassword->get('newPassword')->getData()
+//                    )
+//                );
+//                $this->addFlash('successMessageFlash', 'Mot de passe modifié avec succès');
+//            }
+//
+//            $entityManager->persist($user); //of whatever the entity object you're using to create the form2 form
+//            $entityManager->flush();
+//        }
+//
+//        return $this->render('profile/profile.html.twig', [
+//            'formUpdateEmail' => $formUpdateEmail->createView(),
+//            'formUpdatePassword' => $formUpdatePassword->createView(),
+//            'email' => $emailInBdd
+//        ]);
     }
     #[Route('/profil/supprimer-compte-envoyer-mail', name: 'app_deleteProfile_sendMail')]
     public function deleteProfileSendMail(
